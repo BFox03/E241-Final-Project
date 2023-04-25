@@ -46,23 +46,6 @@ plt.title('Number of Houses for Each Number of Beds in Housing Dataset')
 # Show the plot
 plt.show()
 
-#Pie chart Bedroom counts
-# Calculate percentage values
-percentages = 100 * bed_counts / bed_counts.sum()
-# Create a pie chart without percentage values displayed on the chart
-labels = bed_counts.index
-colors = plt.cm.viridis(np.linspace(0, 1, len(labels)))
-wedges, texts = plt.pie(bed_counts, labels=labels, colors=colors, startangle=90)
-# Set title
-plt.title('Percentage of Houses for Each Number of Beds in NY Housing Dataset')
-# Create a legend with percentage values
-legend_labels = [f'{label}: {percentage:.1f}%' for label, percentage in zip(labels, percentages)]
-plt.legend(wedges, legend_labels, title="Number of Beds", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
-# Equal aspect ratio ensures that pie is drawn as a circle
-plt.axis('equal')
-# Show the plot
-plt.show()
-
 #Scatterplot Price vs. Area
 plt.plot(Housing.area, Housing.price,'o', markersize=2)
 plt.xlabel('Living Area in Square Feet')
@@ -71,8 +54,11 @@ plt.show()
 
 #Simple linear regression model
 SLR=sm.ols(formula = 'Housing.price ~ Housing.area', data = Housing).fit()
-SLR.summary()
+print(SLR.summary())
 
+price = Housing['price']
+area = Housing['area']
+bedrooms = Housing['bedrooms']
 # Multi-linear regression model
-MLR=sm.ols(formula = 'Housing.price ~ Housing.area + Housing.bedrooms', data = Housing).fit()
-MLR.summary()
+MLR=sm.ols(formula = 'price ~ area + bedrooms', data = Housing).fit()
+print(MLR.summary())
