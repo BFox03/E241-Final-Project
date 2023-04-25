@@ -30,6 +30,7 @@ print("A description about \'price\':\n{}\n".format(columnPop.describe()))
 plt.hist(columnPop.dropna(),bins=10)
 plt.xlabel('Price')
 plt.ylabel('Houses')
+plt.title('Number of Houses per Price in Housing Dataset')
 plt.show()
 
 #Bar chart bedroom counts
@@ -50,6 +51,7 @@ plt.show()
 plt.plot(Housing.area, Housing.price,'o', markersize=2)
 plt.xlabel('Living Area in Square Feet')
 plt.ylabel("House Price in $")
+plt.title('Housing Price for Living Area in Housing Dataset')
 plt.show()
 
 #Simple linear regression model
