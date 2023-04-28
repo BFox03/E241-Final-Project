@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import statsmodels.formula.api as sm
+import statsmodels.api as anova
 
 Housing = pd.read_excel('Housing.xlsx')
 print("This data is a {} type \n".format(type(Housing)))
@@ -24,7 +25,7 @@ namesOfColumns = Housing.columns
 print("The columns in this file are \n{}\n".format(namesOfColumns))
 
 print("A description about \'price\':\n{}\n".format(price.describe()))
-
+'''
 #Histogram price counts
 plt.hist(price.dropna(),bins=10)
 plt.xlabel('Price')
@@ -73,11 +74,9 @@ plt.xlabel('Living Area in Square Feet')
 plt.ylabel("House Price in $")
 plt.title('Housing Price for Living Area in Housing Dataset')
 plt.show()
-
-#Simple linear regression model
-SLR=sm.ols(formula = 'price ~ area', data = Housing).fit()
-print(SLR.summary())
-
+'''
 # Multi-linear regression model
-MLR=sm.ols(formula = 'price ~ area + bedrooms', data = Housing).fit()
+MLR=sm.ols(formula = 'area ~ price + bedrooms', data = Housing).fit()
+ANOVA = anova.stats.anova_lm(MLR)
 print(MLR.summary())
+print(ANOVA)
