@@ -25,7 +25,7 @@ namesOfColumns = Housing.columns
 print("The columns in this file are \n{}\n".format(namesOfColumns))
 
 print("A description about \'price\':\n{}\n".format(price.describe()))
-'''
+
 #Histogram price counts
 plt.hist(price.dropna(),bins=10)
 plt.xlabel('Price')
@@ -74,7 +74,7 @@ plt.xlabel('Living Area in Square Feet')
 plt.ylabel("House Price in $")
 plt.title('Housing Price for Living Area in Housing Dataset')
 plt.show()
-'''
+
 # Multi-linear regression model
 MLR=sm.ols(formula = 'area ~ price + bedrooms', data = Housing).fit()
 ANOVA = anova.stats.anova_lm(MLR)
